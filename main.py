@@ -9,6 +9,11 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 
+@app.get("/")
+async def do_auth(request: Request):
+    return {"test": "hi"}
+
+
 @app.get("/auth/", response_class=HTMLResponse)
 async def do_auth(request: Request):
     return templates.TemplateResponse("auth.html", {"request": request})
