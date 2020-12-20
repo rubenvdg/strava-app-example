@@ -9,11 +9,11 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/redirect/")
-async def read_item(state: str = "", code: str = "", scope: str = ""):
-    return {"auth_code": code}
-
-
 @app.get("/auth/", response_class=HTMLResponse)
 async def do_auth(request: Request):
     return templates.TemplateResponse("auth.html", {"request": request})
+
+
+@app.get("/redirect/", response_class=HTMLResponse)
+async def read_item(request: Request, state: str = "", code: str = "", scope: str = ""):
+    return templates.TemplateResponse("redirect.html", {"request": request, "code": code})
