@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")
-async def do_auth(request: Request):
+async def do_auth():
     return {"test": "hi"}
 
 
